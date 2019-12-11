@@ -14,6 +14,7 @@
 
 # [START gae_python37_app]
 from flask import Flask
+import pymongo
 
 
 # If `entrypoint` is not defined in app.yaml, App Engine will look for an app
@@ -24,7 +25,16 @@ app = Flask(__name__)
 @app.route('/')
 def hello():
     """Return a friendly HTTP greeting."""
-    return 'Hello World!'
+    client = pymongo.MongoClient("mongodb+srv://admin:chadi2199@cluster0-ydn1f.gcp.mongodb.net/test?retryWrites=true&w=majority")
+    db = client.get_database('cnbc_db')
+    records = db.cnbc_retail
+
+    new_record = {'title': 'Title of an article', 
+                  'sentiment': 0.6, 
+                  'word_length': 867}
+
+    records.insert_one(new_record)
+    return '<h3>I just created this record: {0}</h3>'.format(new_record)
 
 
 if __name__ == '__main__':
