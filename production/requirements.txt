@@ -3,3 +3,7 @@ pymongo
 dnspython
 gunicorn==19.6.0
 vaderSentiment
+bs4
+pandas
+feedparser
+newspaper
