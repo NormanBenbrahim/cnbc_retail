@@ -6,4 +6,5 @@ vaderSentiment
 bs4
 pandas
 feedparser
-newspaper
+newspaper3k
+Jinja2
